@@ -1,6 +1,10 @@
-<p> Your task is: <%= @task.title %> </p>
-<p> Here all the details: <%= @task.details %> </p>
-<p> Is is completed? <%= @task.completed %> </p>
-<p> <%= link_to "Back to your list", tasks_path %> </p>
-<!-- Per inserire il link e' sempre megli utilizzare la dicitura link_to  -->
-<p> <%= link_to "Edit", edit_path %> </p>
+<h1>A single task</h1>
+<p>Task title: <%= @task.title %></p>
+<p>Task details: <%= @task.details %></p>
+<p>Task completed: <%= @task.completed %></p>
+<!-- EDIT -->
+<%= link_to "Edit", edit_task_path(@task) %>
+<!-- DESTROY -->
+<%= link_to "Delete", task_path(@task), method: :delete, data: { confirm: "Are you sure?" }%>
+<!-- GO BACK TO THE LIST OF tasks -->
+<%= link_to "Go to the list", tasks_path %>

@@ -1,18 +1,14 @@
-<% @tasks.each do |x|  %> 
-<%= link_to "#{x.title}", task_path(x.id) %> 
-<!-- Mette il link su ciò che scriviamo dopo "link_to"  -->
-<!-- Dopo "task_path" si può scrivere solo x invece di x.id -->
-<!-- e comunque task_path(x.id) specifica DOVE ANDARE dopo aver CLICCATO sul LINK specificato in precedenza --> 
-<!-- E' SOTTOINTESA che debba visualizzare i valori ".title" anche se non lo scriviamo -->
-<%= link_to "Destroy", task_path(x.id), method: :delete, data: {confirm: "Sicuro?"}  %> 
-<!-- Relativamente al codice qui sopra, il nome del metodo deve essere lo stesso che abbiamo definito nel Controller? Quindi se chiamo il metodo BANANA allora scrivo method: :banana ?
-No! Il nome del metodo è il VERBO HTTP : GET, POST, PATCH/PUT, DELETE (edited) 
-task_path è uguale per tutti, ma con un metodo diverso
-- GET: per vedere, quando hai una view
-- POST: per create nel db (no view)
-- PATCH/PUT: modificare nel db (no view)
-- DELETE: eliminare nel db (no view) -->
-<% end  %>
- 
-
+<h1>All Tasks</h1>
+<%= link_to "Create a new Task", new_task_path %>
+<ul id="tasks">
+  <% @tasks.each do |task| %>
+	<p>Task title: <%= link_to task.title, task_path(task) %></p>
+	<p>Task details: <%= task.details %></p>
+	  <% if task.completed %>
+	    <p class="fa fa-check-square-o" style="font-size:24px"></p>
+	  <% else %>
+	    <p class="fa fa-square-o" style="font-size:24"></p>
+	  <% end %>
+  <% end %>
+</ul>
 

@@ -1,16 +1,2 @@
-<%= form_for(@task) do |f| %>
-   <%= f.label :title %>
-   <%= f.text_field :title %>
-   <%= f.label :details %>
-   <%= f.text_field :details %>
-   <%= f.submit %>
- <% end %>
-
-
- <!-- Come si MODIFICA un nuovo post/task/utente? Selezionando il post desiderato
- e modificando i dati, magari con un form!!
- SELEZIONO il posto dalla pagina principale. E dopo averlo modificato chi e dove li salva? 
-E' il form stesso a salvare i dati, dove? 
-Nel database in quanto il form fa una richiesta che si chiama UPDATE:
-svolge le azioni definite nel metodo "update" e invia i dati al database con PATCH UPDATE -->
-
+<h1>Edit a TASK</h1>
+<%= render "form" %>

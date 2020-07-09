@@ -1,13 +1,1 @@
-<%= simple_form_for(@task) do |x| %>
-  <%= x.input :title %>
-  <%= x.input :details %>
-  <%= x.input :completed %>
-  <%= x.button :submit %>
-<% end %>
-
-
-<!-- Come si CREA un nuovo post/task/utente? Inserendo dei dati, magari con un form!! 
-E' dopo averli inseriti chi e dove li salva? 
-E' il form stesso a salvare i dati, dove? 
-Nel database in quanto il form fa una richiesta che si chiama CREATE:
-svolge le azioni definite nel metodo "create" e invia i dati al database con POST CREATE -->
+<%= render "form" %>
