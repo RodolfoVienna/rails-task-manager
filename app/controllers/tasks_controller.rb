@@ -1,21 +1,15 @@
 class TasksController < ApplicationController
+
+  before_action :find_task, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tasks = Task.all # Task e' una CLASSE - @task e' l'istanza
+    @tasks = Task.all
   end
 
-  def show
-    @task = Task.find(params[:id]) # Task e' una CLASSE - @task e' l'istanza
-    # [#<Task id: 1, title: "Laundry", details: "Do not mix colors!", completed: nil,
-    # created_at: "2020-04-01 12:02:19", updated_at: "2020-04-01 12:02:19">,
-    # #<Task id: 2, title: "Studying", details: "A lot of flashcards to do",
-    # completed: true, created_at: "2020-04-01 12:02:31", updated_at: "2020-04-01 12:02:31">]
-    # Cerco dentro la classe TASK passando l'ID. Quale ID?
-    # L'ID contenuto dentro params
-  end
+  def show; end
 
   def new
     @task = Task.new
-    # Crea un'istanza vuota e con il FORM la potro' popolare e salvare nel database
   end
 
   def create
@@ -27,25 +21,21 @@ class TasksController < ApplicationController
     # {"title"=>"Nuovo Task", "details"=>"Devi creare un nuovo task", "completed"=>"0"}
     @task.save
     # .new & .save oppure solo Task.create
-    redirect_to task_path(@task.id)
+    redirect_to task_path(@task)
     # visualizza la pagina della nuova istanza (del nuovo task) creata
     # che sarebbe SHOW.HTML
   end
 
-  def destroy
-    @task = Task.find(params[:id])
-    @task.delete
-    redirect_to tasks_path
-  end
-
-  def edit
-    @task = Task.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @task = Task.find(params[:id])
     @task.update(task_params)
-    redirect_to task_path(@task.id)
+    redirect_to task_path(@task)
+  end
+
+  def destroy
+    @task.destroy
+    redirect_to tasks_path
   end
 
   private
@@ -53,4 +43,10 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :details, :completed)
   end
+
+  def find_task
+    @task = Task.find(params[:id])
+  end
+
+
 end
